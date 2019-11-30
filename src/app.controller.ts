@@ -26,6 +26,12 @@ export class AppController {
     return this.authService.login(request.user);
   }
 
+  @UseGuards(AuthGuard('facebook-token'))
+  @Get('facebook')
+  async getTokenAfterFacebookSignIn(@Req() req) {
+    return req.body.access_token
+  }
+
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
   getProfile(@Req() request: Request) {
