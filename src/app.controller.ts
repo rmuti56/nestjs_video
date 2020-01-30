@@ -8,6 +8,7 @@ import { diskStorage } from 'multer';
 import { editFileName, imageFileFilter } from './utils/file-uploading.utils';
 import * as fs from 'fs';
 import { Response } from 'express-serve-static-core';
+
 @Controller()
 export class AppController {
   constructor(
@@ -145,6 +146,12 @@ export class AppController {
       res.writeHead(200, head)
       fs.createReadStream(path).pipe(res)
     }
+  }
+
+  @Post('profile1')
+  postProfileTest(@Req() request: Request, @Body() user: any) {
+    console.log('user')
+    return user;
   }
 }
 
