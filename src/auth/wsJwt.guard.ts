@@ -13,7 +13,6 @@ export class WsJwtGuard implements CanActivate {
   constructor() { }
 
   async canActivate(context: ExecutionContext) {
-
     const client: Socket = context.switchToWs().getClient();
     const authToken: string = client.handshake.query && client.handshake.query.token
     try {
@@ -21,8 +20,6 @@ export class WsJwtGuard implements CanActivate {
       return Boolean(jwtPayload)
     } catch (error) {
       client.emit('chatToServer', new WsException(error.message));
-
     }
-
   }
 }
