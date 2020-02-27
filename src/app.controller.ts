@@ -53,9 +53,11 @@ export class AppController {
       storage: diskStorage({
         destination: './files/image',
         filename: editFileName,
-        limits: { fileSize: 10 * 1024 * 1024 }
       }),
       fileFilter: imageFileFilter,
+      limits: {
+        fileSize: 1 * 1024 * 1024
+      }
     }),
   )
   async uploadFile(@UploadedFile() file, @Body() user: any) {
@@ -87,9 +89,11 @@ export class AppController {
       storage: diskStorage({
         destination: './files/image',
         filename: editFileName,
-        limits: { fileSize: 10 * 1024 * 1024 }
       }),
       fileFilter: imageFileFilter,
+      limits: {
+        fileSize: 1 * 1024 * 1024
+      }
     })
   )
   async uploadMultipleFiles(@UploadedFiles() files) {

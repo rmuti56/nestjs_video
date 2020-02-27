@@ -581,6 +581,21 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.1.tgz#dc488842312a7f075149312905b5e3c0b054c79d"
   integrity sha512-FwI9gX75FgVBJ7ywgnq/P7tw+/o1GUbtP0KzbtusLigAOgIgNISRK0ZPl4qertvXSIE8YbsVJueQ90cDt9YYyw==
 
+"@types/multer-s3@^2.7.7":
+  version "2.7.7"
+  resolved "https://registry.yarnpkg.com/@types/multer-s3/-/multer-s3-2.7.7.tgz#36acad009726377b2b85116a0fe2d37cd569cb45"
+  integrity sha512-WvVVtgEbbTnZNNKLtsyKXzRxaRCNXxqCRdsqyBjMGLrNWTl1Yu5ETVW1x7wVQu7jGXLBigiqNi8qZJn/cgT9Dg==
+  dependencies:
+    "@types/multer" "*"
+    aws-sdk "^2.37.0"
+
+"@types/multer@*", "@types/multer@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@types/multer/-/multer-1.4.2.tgz#f73e9eab7d8e0ff2842630e7968b88336cbb7e1c"
+  integrity sha512-pVcPwuC0FbVcLhopJHx8Ro3WSXjvVvEpJMfy+DFAL/3DwNYAQH+hf/Vq+PqoS5kM4mng7L/4upzXhP/12yWh4w==
+  dependencies:
+    "@types/express" "*"
+
 "@types/node@*":
   version "13.5.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.5.2.tgz#3de53b55fd39efc428a901a0f6db31f761cfa131"
@@ -1134,6 +1149,21 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+aws-sdk@^2.37.0:
+  version "2.627.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.627.0.tgz#e5449ad493f47e81f61a6c941be2cba2bab660ab"
+  integrity sha512-78XdgRYkxpfMpmYQT8uuOClTAxlyDL81WC8TG7XHonXr3l4l+Mbo38wvIRwUiqTvuDIMMni5S5fUeugG2fZxSQ==
+  dependencies:
+    buffer "4.9.1"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.3.2"
+    xml2js "0.4.19"
 
 aws-sdk@^2.610.0:
   version "2.610.0"

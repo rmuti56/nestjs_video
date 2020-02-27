@@ -1,4 +1,5 @@
 import { Req, Res, Injectable } from '@nestjs/common';
+import { Request } from 'express'
 import 'dotenv/config';
 import * as multer from 'multer';
 import * as AWS from 'aws-sdk';
@@ -14,7 +15,7 @@ const s3 = new AWS.S3({
 export class ImageUploadS3Service {
   constructor() { }
 
-  async fileupload(@Req() req, @Res() res) {
+  async fileupload(@Req() req: Request, @Res() res) {
     try {
       this.upload(req, res, function (error) {
         if (error) {
