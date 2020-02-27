@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Post, UseGuards, Body, UseInterceptors, UploadedFile, UploadedFiles, Param, Res } from '@nestjs/common';
+import { Controller, Get, Req, Post, UseGuards, Body, UseInterceptors, UploadedFile, UploadedFiles, Param, Res, BadRequestException } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request, request, Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
@@ -58,13 +58,28 @@ export class AppController {
       fileFilter: imageFileFilter,
     }),
   )
-  async uploadFile(@UploadedFile() file) {
+  async uploadFile(@UploadedFile() file, @Body() user: any) {
+    if (!file) {
+      throw new BadRequestException('image is required')
+    }
+
     const response = {
       originalname: file.originalname,
       filename: file.filename,
     }
     return response;
   }
+
+  // @Post('uploadImage')
+  // @UseInterceptors(FileInterceptor('file'))
+  // async uploadFile(@Body() user: any) {
+  //   console.log(user.test)
+  //   // const response = {
+  //   //   originalname: file.originalname,
+  //   //   filename: file.filename,
+  //   // }
+  //   return user;
+  // }
 
   @Post('uploadMultiple')
   @UseInterceptors(
