@@ -8,7 +8,7 @@ import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
 import { FacebookStrategy } from './facebook.strategy';
 import { GoogleStrategy } from './google.strategy';
-
+import { GithubStrategy } from './github.strategy';
 
 @Global()
 @Module({
@@ -24,7 +24,8 @@ import { GoogleStrategy } from './google.strategy';
     LocalStrategy,
     JwtStrategy,
     FacebookStrategy,
-    GoogleStrategy],
+    GoogleStrategy,
+    GithubStrategy],
   exports: [AuthService]
 })
 export class AuthModule { }

@@ -1,17 +1,17 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { Strategy } from "passport-google-oauth20";
+import { Strategy } from "passport-github";
 import 'dotenv/config';
 
 @Injectable()
-export class GoogleStrategy extends PassportStrategy(Strategy, 'google')
+export class GithubStrategy extends PassportStrategy(Strategy, 'github')
 {
 
   constructor() {
     super({
-      clientID: process.env.GOOGLE_CLIENTID,     // <- Replace this with your client id
-      clientSecret: process.env.GOOGLE_CLIENTSECRET, // <- Replace this with your client secret
-      callbackURL: 'http://localhost:5000/auth/google/callback',
+      clientID: process.env.GITHUB_CLIENTID,     // <- Replace this with your client id
+      clientSecret: process.env.GITHUB_CLIENTSECRET, // <- Replace this with your client secret
+      callbackURL: "http://localhost:5000/auth/github/callback",
       passReqToCallback: true,
       scope: ['profile']
     })

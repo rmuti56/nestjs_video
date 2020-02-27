@@ -2,6 +2,9 @@ import { Injectable } from "@nestjs/common";
 import { UsersService } from "src/users/users.service";
 import * as facebookTokenStrategy from 'passport-facebook-token';
 import { use } from 'passport'
+import 'dotenv/config';
+
+
 @Injectable()
 export class FacebookStrategy {
   constructor(
@@ -13,8 +16,8 @@ export class FacebookStrategy {
   init() {
     use(
       new facebookTokenStrategy({
-        clientID: '624639358301802',
-        clientSecret: 'c3d24884d517cb15917a8803c8e90c06',
+        clientID: process.env.FACEBOOK_CLIENTID,
+        clientSecret: process.env.FACEBOOK_CLIENTSECRET,
       },
         async (
           accessToken: string,
@@ -23,8 +26,8 @@ export class FacebookStrategy {
           done: any
         ) => {
           console.log(profile, 1);
-          const user = {};
-          return done(null, profile);
+          const user = profile;
+          return done(null, user);
         })
     )
   }

@@ -51,6 +51,24 @@ export class AppController {
       res.redirect('http://localhost:5000');
   }
 
+  @Get('auth/github')
+  @UseGuards(AuthGuard('github'))
+  githubLogin() {
+    console.log('test')
+    // initiates the github  login flow
+  }
+
+  @Get('auth/github/callback')
+  @UseGuards(AuthGuard('github'))
+  githubLoginCallback(@Req() req, @Res() res) {
+    // handles the github  callback
+    const jwt: string = req.user.jwt;
+    if (jwt)
+      res.redirect('http://localhost:5000?token=' + jwt);
+    else
+      res.redirect('http://localhost:5000');
+  }
+
   @UseGuards(AuthGuard('jwt'))
   @Get('profile')
   getProfile(@Req() request: Request) {
