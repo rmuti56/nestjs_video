@@ -22,9 +22,9 @@ export class FacebookStrategy {
           profile: any,
           done: any
         ) => {
-          console.log(profile);
+          console.log(profile, 1);
           const user = {};
-          return done(null, user);
+          return done(null, profile);
         })
     )
   }

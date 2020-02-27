@@ -28,9 +28,27 @@ export class AppController {
   }
 
   @UseGuards(AuthGuard('facebook-token'))
-  @Get('facebook')
+  @Get('auth/facebook')
   async getTokenAfterFacebookSignIn(@Req() req) {
-    return req.body.access_token
+    return req.user
+  }
+
+  @Get('auth/google')
+  @UseGuards(AuthGuard('google'))
+  googleLogin() {
+    console.log('test')
+    // initiates the Google OAuth2 login flow
+  }
+
+  @Get('auth/google/callback')
+  @UseGuards(AuthGuard('google'))
+  googleLoginCallback(@Req() req, @Res() res) {
+    // handles the Google OAuth2 callback
+    const jwt: string = req.user.jwt;
+    if (jwt)
+      res.redirect('http://localhost:5000?token=' + jwt);
+    else
+      res.redirect('http://localhost:5000');
   }
 
   @UseGuards(AuthGuard('jwt'))

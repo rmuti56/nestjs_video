@@ -7,6 +7,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { JwtStrategy } from './jwt.strategy';
 import { FacebookStrategy } from './facebook.strategy';
+import { GoogleStrategy } from './google.strategy';
+
 
 @Global()
 @Module({
@@ -18,7 +20,11 @@ import { FacebookStrategy } from './facebook.strategy';
       signOptions: { expiresIn: '1h' },
     }),
   ],
-  providers: [AuthService, LocalStrategy, JwtStrategy, FacebookStrategy],
+  providers: [AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    FacebookStrategy,
+    GoogleStrategy],
   exports: [AuthService]
 })
 export class AuthModule { }
