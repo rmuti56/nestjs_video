@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Post, UseGuards, Body, UseInterceptors, UploadedFile, UploadedFiles, Param, Res, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Req, Post, UseGuards, Body, UseInterceptors, UploadedFile, UploadedFiles, Param, Res, BadRequestException, ValidationPipe } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Request, request, Response } from 'express';
 import { AuthGuard } from '@nestjs/passport';
@@ -42,7 +42,7 @@ export class AppController {
 
   @Get('auth/google/callback')
   @UseGuards(AuthGuard('google'))
-  googleLoginCallback(@Req() req, @Res() res) {
+  googleLoginCallback(@Req() req, @Res() res: Response) {
     // handles the Google OAuth2 callback
     const jwt: string = req.user.jwt;
     if (jwt)
@@ -96,10 +96,11 @@ export class AppController {
       }
     }),
   )
-  async uploadFile(@UploadedFile() file, @Body() user: any) {
+  async uploadFile(@UploadedFile() file, @Body(new ValidationPipe()) data: any) {
     if (!file) {
       throw new BadRequestException('image is required')
     }
+    console.log(data.shop_name)
 
     const response = {
       originalname: file.originalname,
